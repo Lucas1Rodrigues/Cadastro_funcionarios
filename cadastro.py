@@ -69,7 +69,7 @@ class Empresa:
          return sum(func.salario for func in self.funcionarios)
               
             
-    def aumentar_salario(self,id, aumento:float):
+    def aumentar_salario(self,id, aumento):
             funcionario = self.buscar_func(id)
             if not isinstance(funcionario,Func):
                  raise ValueError('Funcionario nao foi achado')

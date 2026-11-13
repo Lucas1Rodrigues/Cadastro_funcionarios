@@ -1,4 +1,7 @@
+
 from cadastro import Func, Empresa
+
+
 def main():
     empresa = Empresa()
 
@@ -13,58 +16,66 @@ def main():
         print("7 - Mostrar maior salário")
         print("0 - Sair")
 
-        opcao = input("\nEscolha uma opcao: ")
+        opcao = input("\nEscolha uma opção: ")
 
         try:
-            if opcao == '1':
+            if opcao == "1":
                 id = input("ID: ")
                 nome = input("Nome: ")
                 idade = int(input("Idade: "))
                 cargo = input("Cargo: ")
                 salario = float(input("Salário: "))
 
-                funcionario = Func(id,nome,idade,cargo,salario)
+                funcionario = Func(id, nome, idade, cargo, salario)
                 empresa.cadastrar_func(funcionario)
 
-                print("Funcionario Cadastrado! ")
+                print("Funcionário cadastrado!")
 
             elif opcao == "2":
-                id = input("Digite o Id do funcionario: ")
-                funcionario = empresa.remover_func(id)
+                id = input("Digite o ID do funcionário: ")
+                funcionario = empresa.buscar_func(id)
+
+                if funcionario is None:
+                    print("Funcionário não encontrado!")
+                else:
+                    empresa.remover_func(funcionario)
+                    print("Funcionário removido!")
 
             elif opcao == "3":
-                id = input("Digite o id do funcionario: ")
-                funcionario = empresa.buscar_func()
-                print(funcionario)
+                id = input("Digite o ID: ")
+                funcionario = empresa.buscar_func(id)
+
+                if funcionario is None:
+                    print("Funcionário não encontrado!")
+                else:
+                    print(funcionario)
 
             elif opcao == "4":
                 empresa.listar_func()
 
             elif opcao == "5":
-                print(f"A folha total de funcionarios é R$ {empresa.calcular_folha()}")
+                total = empresa.calcular_folha()
+                print(f"Folha salarial: R$ {total:,.2f}")
 
             elif opcao == "6":
-                id = input("Digite o id do funcionario: ")
-                valor = input("Digite o valor do aumento (APENAS O VALOR DO AUMENTO)")
-                empresa.aumentar_salario(id,valor)
-            
-            elif opcao == "7":
-                print(f"O maior salario da empresa é R${empresa.maior_salario()}"
+                id = input("Digite o ID: ")
+                aumento = float(input("Valor do aumento: "))
 
-            elif opcao = "0"
+                empresa.aumentar_salario(id, aumento)
+                print("Salário atualizado!")
+
+            elif opcao == "7":
+                print(f"Maior salário: R$ {empresa.maior_salario():,.2f}")
+
+            elif opcao == "0":
                 print("Encerrando o sistema...")
                 break
+
             else:
-                print("Opcao inválida!")
+                print("Opção inválida!")
 
-            except ValueError as e:
-                print(f"erro: {e}")
-
-
-
-                
-   
-    
+        except ValueError as erro:
+            print(f"Erro: {erro}")
 
 
 if __name__ == "__main__":
