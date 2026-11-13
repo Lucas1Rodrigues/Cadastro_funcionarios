@@ -52,6 +52,7 @@ class Empresa:
             raise ValueError("Valor incorreto, digite um funcionario")
         else:
             self.funcionarios.remove(funcionario)
+            print("Funcionario removido!")
 
     def buscar_func(self,id):
             if not isinstance(id,(str,int)):
